@@ -1,4 +1,5 @@
 -- Desafio 01. Incluindo um aluguel nova dentro da base de dados:
+
 -- Criando uma Procedure:
 USE `insight_places`;
 DROP procedure IF EXISTS `tiposDados`;
