@@ -149,6 +149,105 @@ CALL novoAluguel_33('10007', 'Victorino Vila', '8635', '2023-03-30', '2023-04-04
 
 -- 3.D Tratando o CASE-END CASE
 
+-- 3.4 Reconstruindo a Procedure, usando a estrutura do CASE para substituir o IF, ELSEIF E ELSE:
+
+USE `insight_places`;
+DROP procedure IF EXISTS `insight_places`.`novoAluguel_34`;
+DELIMITER $$
+USE `insight_places`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `novoAluguel_34`
+(vAluguel VARCHAR(10), vClienteNome VARCHAR(150), vHospedagem VARCHAR(10), vDataInicio DATE, vDataFinal DATE, vPrecoUnitario DECIMAL(10, 2)) 
+
+BEGIN
+    DECLARE vCliente VARCHAR(10); 
+    DECLARE vDias INT DEFAULT 0;    
+    DECLARE VNumCliente INT; 
+    DECLARE vPrecoTotal DECIMAL(10, 2);
+    DECLARE vMensagem VARCHAR(100);                    
+    DECLARE EXIT HANDLER FOR 1452                     
+    BEGIN
+        SET vMensagem = 'Problema de chave estrangeira associado a alguma entidade da base.';   
+        SELECT vMensagem;
+    END;
+    
+    SET VNumCliente = (SELECT COUNT(*) FROM clientes WHERE nome = vClienteNome);
+    
+    CASE VNumCliente  -- Alterado para usar a estrutura CASE ao invés de IF-ELSEIF.
+    WHEN 0 THEN 
+		SET vMensagem = 'Este cliente não pode ser usado para incluir o aluguel porque não existe.';   
+        SELECT vMensagem;  -- Exibe mensagem se nenhum cliente for encontrado.
+	WHEN 1 THEN
+		SET vDias = (SELECT DATEDIFF(vDataFinal, vDataInicio));         
+		SET vPrecoTotal = vDias * vPrecoUnitario;     
+		SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome;
+		INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 
+		SET vMensagem = 'Aluguel incluído na base com sucesso.';    
+		SELECT vMensagem;  -- Processa o aluguel se houver exatamente 1 cliente encontrado.
+	ELSE
+		SET vMensagem = 'Este cliente não pode ser usado para incluir o aluguel pelo nome.';   
+        SELECT vMensagem;  -- Exibe mensagem se houver mais de um cliente com o mesmo nome.
+	END CASE;  -- Fechamento do CASE.
+END$$
+DELIMITER ;
+
+-- Incluindo um aluguel:
+CALL novoAluguel_34('10007', 'Victorino Vila', '8635', '2023-03-30', '2023-04-04', 40); -- Mensagem: 'Este cliente não pode ser usado para incluir o aluguel porque não existe.'
+
+-- Incluindo outro aluguel:
+CALL novoAluguel_34('10007', 'Luana Moura ', '8635', '2023-03-30', '2023-04-04', 40); -- Mensagem: 'Aluguel incluído na base com sucesso.'
+
+-- 3.E Implementando o CASE-END CASE
+
+-- 3.5 Colocando uma condição de teste diretamente com o CASE condicional
+
+USE `insight_places`;
+DROP procedure IF EXISTS `insight_places`.`novoAluguel_35`;
+DELIMITER $$
+USE `insight_places`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `novoAluguel_35`
+(vAluguel VARCHAR(10), vClienteNome VARCHAR(150), vHospedagem VARCHAR(10), vDataInicio DATE, vDataFinal DATE, vPrecoUnitario DECIMAL(10, 2)) 
+
+BEGIN
+    DECLARE vCliente VARCHAR(10); 
+    DECLARE vDias INT DEFAULT 0;    
+    DECLARE VNumCliente INT; 
+    DECLARE vPrecoTotal DECIMAL(10, 2);
+    DECLARE vMensagem VARCHAR(100);                    
+    DECLARE EXIT HANDLER FOR 1452                     
+    BEGIN
+        SET vMensagem = 'Problema de chave estrangeira associado a alguma entidade da base.';   
+        SELECT vMensagem;
+    END;
+    
+    SET VNumCliente = (SELECT COUNT(*) FROM clientes WHERE nome = vClienteNome);
+    
+    CASE                                 -- Foi necessário retirar a variável da estrutura principal do CASE, por isso, adicionamos condições explícitas dentro dos WHEN.
+    WHEN VNumCliente = 0 THEN 
+		SET vMensagem = 'Este cliente não pode ser usado para incluir o aluguel porque não existe.';   
+        SELECT vMensagem;  -- Exibe mensagem se nenhum cliente for encontrado.
+	WHEN VNumCliente = 1 THEN
+		SET vDias = (SELECT DATEDIFF(vDataFinal, vDataInicio));         
+		SET vPrecoTotal = vDias * vPrecoUnitario;     
+		SELECT cliente_id INTO vCliente FROM clientes WHERE nome = vClienteNome;
+		INSERT INTO alugueis VALUES (vAluguel, vCliente, vHospedagem, vDataInicio, vDataFinal, vPrecoTotal); 
+		SET vMensagem = 'Aluguel incluído na base com sucesso.';    
+		SELECT vMensagem;  -- Processa o aluguel se houver exatamente 1 cliente encontrado.
+	WHEN VNumCliente > 1 THEN
+		SET vMensagem = 'Este cliente não pode ser usado para incluir o aluguel pelo nome.';   
+        SELECT vMensagem;  -- Exibe mensagem se houver mais de um cliente com o mesmo nome.
+	END CASE;  -- Fechamento do CASE.
+END$$
+DELIMITER ;
+
+-- Incluindo um aluguel por um cliente que não existe na base:
+CALL novoAluguel_35('10007', 'Victorino Vila', '8635', '2023-03-30', '2023-04-04', 40); -- Mensagem: 'Este cliente não pode ser usado para incluir o aluguel porque não existe.'
+
+-- Incluindo o aluguel por um nome da tabela de clientes, que ainda não possui registro:
+CALL novoAluguel_35('10007', 'Luana Moura ', '8635', '2023-03-30', '2023-04-04', 40); -- Mensagem: 'Aluguel incluído na base com sucesso.'
+
+-- Incluindo o aluguel por um cliente que possui mais de 1 registro na base:
+CALL novoAluguel_35('10007', 'Júlia Pires ', '8635', '2023-03-30', '2023-04-04', 40); -- Mensagem: 'Este cliente não pode ser usado para incluir o aluguel pelo nome.'
+
 
 
 
