@@ -1,6 +1,7 @@
 Realizando consultas com MySQL: Executando Procedures
 
 Visão Geral
+
 Este repositório contém as práticas e o desenvolvimento de stored procedures em MySQL, focando na gestão de aluguéis para a empresa fictícia Insight Places. 
 Durante o curso, abordamos desde a configuração inicial da base de dados até a implementação de procedimentos complexos para gerenciar a inclusão de novos aluguéis.
 
