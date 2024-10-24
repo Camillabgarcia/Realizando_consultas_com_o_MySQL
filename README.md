@@ -8,7 +8,6 @@ Durante o curso, abordamos desde a configuração inicial da base de dados até 
 
 <u>Conteúdo Aprendido</u>
 
-
 Configuração da Base de Dados
 Configuração Inicial: Estabelecemos a base de dados necessária para o funcionamento das operações da Insight Places.
 Compreensão do Negócio: Analisamos os desafios enfrentados pela empresa, principalmente na gestão de novos aluguéis.
