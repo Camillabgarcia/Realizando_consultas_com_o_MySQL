@@ -6,7 +6,7 @@ Este repositório contém as práticas e o desenvolvimento de stored procedures 
  
 Durante o curso, abordamos desde a configuração inicial da base de dados até a implementação de procedimentos complexos para gerenciar a inclusão de novos aluguéis.
 
-<u>Conteúdo Aprendido</u>
+*Conteúdo Aprendido*
 
 Configuração da Base de Dados
 Configuração Inicial: Estabelecemos a base de dados necessária para o funcionamento das operações da Insight Places.
