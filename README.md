@@ -1,6 +1,6 @@
 **Visão Geral**
 
-Este repositório contém as práticas e o desenvolvimento de stored procedures em MySQL, focando na gestão de aluguéis para a empresa fictícia Insight Places.
+Este repositório contém as práticas e o desenvolvimento de stored procedures em MySQL, focando na gestão de aluguéis para a empresa fictícia Insight Places de hospedagem, onde temos diversos proprietários que cadastram seus imóveis para aluguel de temporada.
 
 **Realizando consultas com MySQL: Executando Procedures**
  
