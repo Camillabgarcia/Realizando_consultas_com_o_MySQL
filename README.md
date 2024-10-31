@@ -77,22 +77,27 @@ Importação de dados para o MySQL
 *Funções de Agregação*
 
 Contagem de registros com COUNT
+
 Outras funções de agregação para sumarização e análise de dados
 
 *Manipulação de Dados com Funções de String, Datas e Números*
 
 Padronização de dados textuais e formatação de dados numéricos
+
 Manipulação de datas para relatórios específicos
 
 *Funções Condicionais e Customizadas*
 
 Uso do CASE para classificações dinâmicas
+
 Criação de funções personalizadas com variáveis, parâmetros e retornos compostos
+
 Chamada de funções dentro de outras funções
 
 *Triggers e Tratamento de Erros*
 
 Criação e execução de triggers
+
 Tratamento de erros e boas práticas para alteração e exclusão de funções
 
 *Benefícios*
