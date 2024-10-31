@@ -61,5 +61,42 @@ Inclusão de Aluguéis: Implementamos a inclusão de aluguéis com base nos dado
 Este projeto é um reflexo do conhecimento adquirido ao longo do curso sobre stored procedures em MySQL, abordando conceitos fundamentais e práticas avançadas para gerenciar a base de dados 
 de uma empresa de forma eficiente. O código e as procedures desenvolvidas demonstram a aplicação de conceitos teóricos em um cenário prático, preparando-nos para desafios reais no gerenciamento de dados.
 
+**Realizando consultas com MySQL: Trabalhando com Funções**
+
+*Objetivos*
+
+Esta etapa teve como objetivo capacitar na criação e utilização de funções nativas e personalizadas do MySQL, incluindo triggers e técnicas para lidar com dados complexos, inconsistentes ou que necessitam de transformação.
+
+*Conteúdos Principais*
+
+*Criação e Manipulação de Estrutura de Dados*
+
+Criação de banco de dados e tabelas
+Importação de dados para o MySQL
+
+*Funções de Agregação*
+
+Contagem de registros com COUNT
+Outras funções de agregação para sumarização e análise de dados
+
+*Manipulação de Dados com Funções de String, Datas e Números*
+
+Padronização de dados textuais e formatação de dados numéricos
+Manipulação de datas para relatórios específicos
+
+*Funções Condicionais e Customizadas*
+
+Uso do CASE para classificações dinâmicas
+Criação de funções personalizadas com variáveis, parâmetros e retornos compostos
+Chamada de funções dentro de outras funções
+
+*Triggers e Tratamento de Erros*
+
+Criação e execução de triggers
+Tratamento de erros e boas práticas para alteração e exclusão de funções
+
+*Benefícios*
+
+Essas técnicas tornam a análise de dados mais precisa e acessível, permitindo que gestores tomem decisões com base em dados organizados e padronizados.
 
 
